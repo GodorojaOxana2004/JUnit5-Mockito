@@ -1,6 +1,5 @@
-package daoTest;
+package dao;
 
-import dao.InventoryManagementDAOImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
