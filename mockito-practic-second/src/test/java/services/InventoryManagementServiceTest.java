@@ -2,12 +2,17 @@ package services;
 
 import dao.InventoryManagementDAO;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+
+@ExtendWith(MockitoExtension.class)
 public class InventoryManagementServiceTest {
 
 
@@ -34,7 +39,7 @@ public class InventoryManagementServiceTest {
         when(daoMock.getStockQuantity(productId)).thenReturn(stockAvailable);
 
 
-        boolean result = servicesMock.processOrder(productId,expectedNewStock);
+        boolean result = servicesMock.processOrder(productId,orderQuantity);
 
         assertTrue(result,"Successfully order");
 
@@ -68,15 +73,13 @@ public class InventoryManagementServiceTest {
         int orderQuantity = 50;
 
         when(daoMock.isProductAvailable(productId)).thenReturn(false);
-        when(daoMock.getStockQuantity(productId)).thenReturn(orderQuantity);
 
-        boolean result =  servicesMock.processOrder(productId,orderQuantity);
+        boolean result = servicesMock.processOrder(productId, orderQuantity);
 
-        assertFalse(result,"Failed order");
+        assertFalse(result, "Failed order");
 
-
-        verify(daoMock,never()).getStockQuantity(anyString());
-        verify(daoMock,never()).updateStock(anyString(),anyInt());
+        verify(daoMock, never()).getStockQuantity(anyString());
+        verify(daoMock, never()).updateStock(anyString(), anyInt());
     }
 
 

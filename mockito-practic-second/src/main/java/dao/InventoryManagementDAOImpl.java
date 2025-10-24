@@ -9,19 +9,19 @@ public class InventoryManagementDAOImpl implements InventoryManagementDAO{
 
     public InventoryManagementDAOImpl() {
         this.inventory = new ConcurrentHashMap<>();
-        initializeTestData();
     }
+
+    public Map<String, Integer> getInventory() {
+        return inventory;
+    }
+
+
+
 
     public InventoryManagementDAOImpl(Map<String,Integer> inventory) {
         this.inventory = new ConcurrentHashMap<>(inventory);
     }
 
-    private void initializeTestData() {
-        inventory.put("A101", 100);
-        inventory.put("B202", 50);
-        inventory.put("C303", 25);
-        inventory.put("D404", 0);
-    }
     private void validateProductId(String productId) {
         if (productId == null || productId.trim().isEmpty()) {
             throw new IllegalArgumentException("Product ID cannot be null or empty");

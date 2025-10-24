@@ -3,19 +3,28 @@ package dao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * ИНТЕГРАЦИОННЫЙ ТЕСТ - тестируем РЕАЛЬНУЮ реализацию DAO
+ * unit test
  * Здесь НЕТ моков, потому что мы проверяем как работает настоящий код
  */
 public class InventoryManagementDAOImplTest {
 
+    private void initializeTestData() {
 
+    }
     private InventoryManagementDAOImpl dao;
     @BeforeEach
     void setUp(){
         dao = new InventoryManagementDAOImpl();
+        dao.getInventory().put("A101", 100);
+        dao.getInventory().put("B202", 50);
+        dao.getInventory().put("C303", 25);
+        dao.getInventory().put("D404", 0);
     }
 
     @Test
