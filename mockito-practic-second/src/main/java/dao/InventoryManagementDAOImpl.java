@@ -15,19 +15,12 @@ public class InventoryManagementDAOImpl implements InventoryManagementDAO{
         return inventory;
     }
 
-
-
-
-    public InventoryManagementDAOImpl(Map<String,Integer> inventory) {
-        this.inventory = new ConcurrentHashMap<>(inventory);
-    }
-
     private void validateProductId(String productId) {
         if (productId == null || productId.trim().isEmpty()) {
             throw new IllegalArgumentException("Product ID cannot be null or empty");
         }
     }
-    @Override
+
     public int getStockQuantity(String productId) {
         validateProductId(productId);
 
@@ -39,7 +32,7 @@ public class InventoryManagementDAOImpl implements InventoryManagementDAO{
     }
 
 
-    @Override
+
     public void updateStock(String productId, int newQuantity) {
         validateProductId(productId);
 
@@ -54,7 +47,7 @@ public class InventoryManagementDAOImpl implements InventoryManagementDAO{
         inventory.put(productId,newQuantity);
     }
 
-    @Override
+
     public boolean isProductAvailable(String productId) {
         validateProductId(productId);
         return inventory.containsKey(productId) && inventory.get(productId) > 0;
